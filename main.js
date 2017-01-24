@@ -3,10 +3,11 @@ var scl = 20;
 var food;
 
 function setup() {
-  createCanvas(1020, 560);
+  createCanvas(1000, 380);
   s = new Snake();
   frameRate(5);
   pickLocation();
+  document.getElementById("score").innerHTML = ("Last Score: " + 0 + "   ^ _ ^   " + "Highscore: " + (localStorage['highscore'] || 0));
 }
 
 function pickLocation(){

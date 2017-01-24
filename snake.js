@@ -1,10 +1,15 @@
 function Snake() {
-  this.x = 0;
-  this.y = 0;
+  this.step = 20;
+  this.x = this.step;
+  this.y = this.step;
+  this.lastx = this.step;
+  this.lasty = this.step;
   this.xspeed = 1;
   this.yspeed = 0;
   this.total = 0;
   this.tail = [];
+  this.window = 600;
+  this.highscore = localStorage['highscore'] || 0;
 
   this.update = function() {
     if (this.total === this.tail.length) {
@@ -44,14 +49,40 @@ function Snake() {
     this.yspeed = y;
   }
 
-  this.death = function(){
-    for (var i = 0; i < this.tail.length; i++){
-      var pos = this.tail[i];
-      var d = dist(this.x, this.y, pos.x, pos.y);
-      if (d < 1) {
-        this.total = 0;
-        this.tail = [];
-      }
+  this.reset = function () {
+    if (this.highscore < this.total) {
+        this.highscore = this.total;
+        localStorage['highscore'] = "" + this.highscore;
     }
+    //scores
+    document.getElementById("score").innerHTML = ("Last Score: " + this.total + "   ^_^   " + "Highscore: " + localStorage['highscore']);
+    //the start position
+    this.x = this.step;
+    this.y = this.step;
+    this.lastx = this.step;
+    this.lasty = this.step;
+    this.xspeed = 1;
+    this.yspeed = 0;
+    this.lastdir = 39;
+    this.total = 0;
+    this.tail = [];
+}
+
+  this.death = function () {
+      for (var i = 0; i < this.tail.length; i++) {
+          var pos = this.tail[i];
+          d = dist(this.x, this.y, pos.x, pos.y);
+          if (d < 1) this.reset();
+      }
+      if (
+          (this.x <= 0 && this.lastx <= 0 && this.lasty == this.y)
+          ||
+          (this.x >= (this.window - this.step) && this.lastx >= (this.window - this.step) && this.lasty == this.y)
+          ||
+          (this.y <= 0 && this.lasty <= 0 && this.lastx == this.x)
+          ||
+          (this.y >= (this.window - this.step) && this.lasty >= (this.window - this.step) && this.lastx == this.x)
+      ) this.reset();
   }
+
 }
