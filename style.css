@@ -1,0 +1,23 @@
+﻿body {
+  background: #6E6E6E;
+	height: 100%;
+	text-align: center;
+	margin: 60px auto;
+}
+
+h1 {
+	font-family: "Bradley Hand", "HelveticaNeue-Light", Helvetica, Arial, "Lucida Grande", sans-serif;
+	color: #E6CF8B;
+	text-align: center;
+	font-size: 30px;
+	margin: 20px auto;
+}
+
+h2 {
+  font-family: "Bradley Hand", "HelveticaNeue-Light", Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: #E6CF8B;
+  text-align: center;
+  font-size: 25px;
+  margin: 20px auto;
+  width: 100%;
+}
