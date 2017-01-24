@@ -18,14 +18,15 @@ function pickLocation(){
 }
 
 function draw() {
-  background(140, 110, 130);
+  background(255,153,0);
   s.death();
   s.update();
   s.show();
   if (s.eat(food)){
     pickLocation();
   }
-  fill(255, 0, 100);
+  fill(64,131,153);
+  noStroke();
   ellipse(food.x, food.y, scl, scl);
 }
 
